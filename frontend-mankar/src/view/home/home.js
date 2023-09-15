@@ -20,7 +20,7 @@ function WelcomeMenu() {
               Enfocada a que los usuarios realicen la reserva donde ellos elijan.                    
           </b></p>
 
-          <a className="btn btn-primary" href="/inicio-sesion"><b>INICIAR SESIÓN</b></a>      
+          <a className="btn btn-primary" href="http://localhost:3000"><b>INICIAR SESIÓN</b></a>      
         </div>
       </div>
     </div>

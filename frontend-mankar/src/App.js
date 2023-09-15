@@ -1,10 +1,11 @@
 import React from 'react';
-import Routes from './routes'; // Importa tu archivo de rutas
+import WelcomeMenu from './view/home/home';
 
 function App() {
   return (
     <div className="App">
-      <Routes /> {/* Renderiza las rutas */}
+      {/* Otros componentes de tu aplicación */}
+      <WelcomeMenu /> {/* Agrega el componente WelcomeMenu aquí */}
     </div>
   );
 }
