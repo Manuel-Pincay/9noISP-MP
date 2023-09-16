@@ -24,11 +24,11 @@
                 <div class="col-12 user-img">
                     <img src="../../../assets/images/ImagenSesion/user.png" alt="User Image" />
                 </div>
-               <!--  <form class="col-12" >
+                <form class="col-12" >
                   <div class="form-group" id="user-group">
-                        <input type="text">
+                    <input type="text">
 
-                    </div>
+                  </div>
 
                     <div class="form-group" id="contrasena-group">
                         <input type="password">
@@ -36,8 +36,15 @@
                     </div>
                     <button type="submit" (click)="InicioSesion()" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>
 
-                </form> -->
-                <form (ngSubmit)="InicioSesion()" #loginForm="ngForm">
+
+
+                </form>
+
+
+                <a class="btn btn-primary" href="/principal"><b>INICIAR SESION</b></a>    
+
+                
+                <!-- <form (ngSubmit)="InicioSesion()" #loginForm="ngForm">
                   <div class="form-group">
                     <label for="USUARIO_DNI">DNI de Usuario:</label>
                     <input type="text" id="USUARIO_DNI" name="USUARIO_DNI" [(ngModel)]="usuarioModel.USUARIO_DNI" required>
@@ -47,7 +54,7 @@
                     <input type="password" id="USUARIO_PASSWORD" name="USUARIO_PASSWORD" [(ngModel)]="usuarioModel.USUARIO_PASSWORD" required>
                   </div>
                   <button type="submit">Iniciar Sesión</button>
-                </form>
+                </form> -->
 
                <!--  <form class="col-12" (ngSubmit)="InicioSesion()">
                    

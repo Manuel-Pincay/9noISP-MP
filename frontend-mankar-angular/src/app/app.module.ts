@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { WelcomeComponent } from './Modulos/welcome/welcome.component';
 import { LoginAppComponent } from './Modulos/login-app/login-app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PrincipalComponent } from './Modulos/principal/principal.component';
 
 
 
@@ -26,12 +27,14 @@ const routes:Routes=[
   {path: 'inicio-sesion', component: LoginAppComponent, pathMatch: 'full'  },/*
   {path: 'principal/:User', component: PrincipalComponent, pathMatch: 'full'}
  */
+  {path: 'principal', component: PrincipalComponent, pathMatch: 'full'}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    PrincipalComponent
   ],
   imports: [
     BrowserModule,
