@@ -4,13 +4,13 @@
       <div class="container-fluid">
         <a href="#" class="navbar-brand logo">APPWEB SEXTO A</a>
          <div class="d-flex">
-          <button class="btn btn-primary" type="submit"  >Hola {{Usuario.CLIENTE_NOMBRE}}</button>
-          <button class="btn btn-secondary mx-4"type="submit" (click)="VerReservas()">Ver mis Reservas</button>
+    <!--       <button class="btn btn-primary" type="submit"  >Hola {{Usuario.CLIENTE_NOMBRE}}</button>
+          <button class="btn btn-secondary mx-4"type="submit" (click)="VerReservas()">Ver mis Reservas</button> -->
           <a href="inicio" class="btn btn-danger " type="submit"  >Cerrar Sesion</a>
          </div>
       </div>
     </nav>
-  
+  <!-- 
     <div class="container-mg">
         <ul class="row align-items-center bg-primary" style="margin-top: 3rem;">
             <li class="col"><a (click)="MostrarServicios('Lubricadora')"><span class="icon"><i class="bi bi-speedometer"></i></span><span class="name">LUBRICADORA</span> </a ></li>
@@ -20,7 +20,7 @@
             <li class="col"><a (click)="MostrarServicios('Pintura')"><span class="icon"><i class="bi bi-paint-bucket"></i></span><span class="name">PINTURA</span> </a></li>
             <li class="col"><a (click)="mensaje()"><span class="icon"><i class="bi bi-arrow-repeat"></i></span><span class="name">PROXIMAMENTE</span> </a></li>
         </ul>
-    </div> 
+    </div>  -->
   
   
   
@@ -41,17 +41,17 @@
              alt="" class="img-fluid" />
             </div>
   
-            <div class="col-md-6 align-self-center">
+           <!--  <div class="col-md-6 align-self-center">
               <div class="cardblock px2">
                 <h2 class="establecimiento">{{servicio.ESTABLECIMIENTO_NOMBRE}} </h2>
                 <p >{{servicio.ESTABLECIMIENTO_DESCRIPCION}} </p>
                 <h2> PRECIO : ${{servicio.SERVICIO_PRECIO}} </h2>
               </div>  
-            </div>
+            </div> -->
   
           <div class="container mb-3">
   
-            
+            <!-- 
             
             <form class="mx-5 my-3">
               <div class="row row-cols-3">
@@ -95,7 +95,7 @@
                   <button class="btn btn-danger " type="submit" (click)="GuardarReserva(name, ced, idser, ename, pre, date, time, car)" > RESERVAR  </button>
                   </div>
                 </div>
-              </form>
+              </form> -->
   
         </div>
   
@@ -105,8 +105,10 @@
   </div>
   <div>
             <!-- ------------------------------------RESERVA-------------------------------------------- -->
-            <div class="card" *ngIf="Reservang">
-              <div class="row align-items-start" *ngFor="let reserva of Reserva">
+
+            <!-- 
+            <div class="card" *ngIf="Mantenimientong">
+              <div class="row align-items-start" *ngFor="let reserva of Mantenimiento">
       
                 <div class="col ">
                   <p> <strong> RESERVACION <br>N: {{reserva.RESERVACION_ID}}</strong><br>  CLIENTE: {{reserva.CLIENTE_CEDULA}}</p>
@@ -134,7 +136,7 @@
                   <a  class="btn btn-success"(click)="EliminarReserva(reserva.RESERVACION_ID)"> ELIMINAR</a>
                 </div>
               </div>
-            </div>
+            </div> -->
   </div>
   
     </div>

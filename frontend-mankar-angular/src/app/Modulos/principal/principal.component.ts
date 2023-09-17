@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ServiciosService } from 'src/app/Services/servicios.service';
 import Swal from 'sweetalert2';
 /* import {Reservas} from '../../interfaces/clases'; */
+import { Mantenimientos } from 'src/app/interfaces/clases';
 @Component({
   selector: 'app-principal',
   templateUrl: './principal.component.html',
@@ -13,15 +14,16 @@ export class PrincipalComponent implements OnInit {
 public servicios: any=[]
 public Establecimiento:any=[]
 public Usuario:any=[]
-public Reserva:any=[]
+public Mantenimiento:any=[]
 public Datos: any=[]
 public Establecimientong:boolean=true
 public clientesng:boolean=true
 public serviciong:boolean=true
 public carrosng:boolean=true
 public trabajadoresng:boolean=true
-public Reservang:boolean=false
-ServicioModel = new Reservas(0,"",0,0,0,"","","")
+public Mantenimientong:boolean=false
+
+ServicioModel = new Mantenimientos(0,0,"",new Date(),"","",true,"",0)
 
   constructor(
     private serviceServices: ServiciosService,
@@ -29,40 +31,40 @@ ServicioModel = new Reservas(0,"",0,0,0,"","","")
     ) { }
 
   ngOnInit(): void {
-    let CEDULA_USER= +this.RutaUser.snapshot.paramMap.get('User')!
-    this.serviceServices.CargarUsuario(CEDULA_USER.toString()).subscribe(Respuesta=>{
+/*     let USUARIO_DNI= +this.RutaUser.snapshot.paramMap.get('User')!
+    this.serviceServices.CargarUsuario(USUARIO_DNI).subscribe(Respuesta=>{
       console.log(Respuesta)
       this.Usuario=Respuesta  
     }) 
 
-
+ */
   }
-
-  EliminarReserva(id:number){
-    this.serviceServices.EliminarReserva(id).subscribe(
+/* 
+  deleteMantenimiento(id:string){
+    this.serviceServices.deleteMantenimiento(id).subscribe(
       Resp=>{
         Swal.fire({
           title: 'Eliminado!!',
           text: 'La reserva a sido eliminada con exito',
         })
-        this.VerReservas()
+        this.getMantenimientos()
       }
     )
   }
 
-  VerReservas(){
-    console.log(this.Usuario.CLIENTE_CEDULA)
-    this.serviceServices.ConsultarReservas(this.Usuario.CLIENTE_CEDULA).subscribe(
+  ConsultarMantenimientos(){
+    console.log(this.Usuario.USUARIO_DNI)
+    this.serviceServices.ConsultarMantenimientos(this.Usuario.USUARIO_DNI).subscribe(
       res => {
         this.serviciong=false
-        this.Reservang=true
-        this.Reserva=res
+        this.Mantenimientong=true
+        this.Mantenimiento=res
         console.log(res)
-        console.log(this.Reserva)
-        if(this.Reserva.length==0){
+        console.log(this.Mantenimiento)
+        if(this.Mantenimiento.length==0){
           Swal.fire({
             title: 'Lo sentimos!',
-            text: 'Por el momento no tienes ninguna Reserva.',
+            text: 'Por el momento no tienes ninguna Mantenimiento.',
           })
         }
         
@@ -71,7 +73,7 @@ ServicioModel = new Reservas(0,"",0,0,0,"","","")
     err =>{
       Swal.fire({
         title: 'Lo sentimos!',
-        text: 'Por el momento no tienes ninguna Reserva.',
+        text: 'Por el momento no tienes ninguna Mantenimiento.',
       })
     }
     )
@@ -79,9 +81,9 @@ ServicioModel = new Reservas(0,"",0,0,0,"","","")
   }
   GuardarReserva(name:HTMLInputElement, ced:HTMLInputElement, idser:HTMLInputElement, ename:HTMLInputElement, pre:HTMLInputElement, date:HTMLInputElement, time:HTMLInputElement, car:HTMLInputElement){
     this.serviceServices.CargarReservas().subscribe(Resp=>{
-      this.Reserva=Resp
-      let IdReserva=this.Reserva.length
-      this.Reserva.forEach((reserva:any)=>{
+      this.Mantenimiento=Resp
+      let IdReserva=this.Mantenimiento.length
+      this.Mantenimiento.forEach((reserva:any)=>{
         IdReserva=reserva.RESERVACION_ID
       })
       IdReserva=IdReserva +1;
@@ -123,7 +125,7 @@ ServicioModel = new Reservas(0,"",0,0,0,"","","")
 
    MostrarServicios(NombreServicio:string){
     this.serviciong=true
-    this.Reservang=false
+    this.Mantenimientong=false
     this.serviceServices.CargarServicios(NombreServicio).subscribe(Respuesta=>{
 
     this.servicios=Respuesta
@@ -141,7 +143,7 @@ ServicioModel = new Reservas(0,"",0,0,0,"","","")
         
       })
     })
-  }
+  } */
 
   
   }

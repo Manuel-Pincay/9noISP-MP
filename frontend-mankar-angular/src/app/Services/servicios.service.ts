@@ -140,6 +140,10 @@ import {
     getMantenimientos() {
       return this.http.get<RespMantenimientos>(`${this.apiUrl}/mantenimientos`);
     }
+
+    ConsultarMantenimientos(USUARIO_DNI:Number){
+      return this.http.get<Mantenimientos>(`${this.apiUrl}/mantenimientos/${USUARIO_DNI}`)
+    }
   
     addMantenimiento(mantenimiento: Mantenimientos) {
       return this.http.post<Mantenimientos>(`${this.apiUrl}/mantenimientos`, mantenimiento);
