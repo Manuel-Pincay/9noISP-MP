@@ -10,9 +10,3 @@ coverage
 *.tsbuildinfo
 *.js.map
 
-# Archivos y directorios específicos de Angular CLI
-e2e
-.angular-cli.json
-angular.json
-karma.conf.js
-protractor.conf.js
