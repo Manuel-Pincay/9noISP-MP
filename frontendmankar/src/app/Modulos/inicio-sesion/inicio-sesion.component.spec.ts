@@ -8,7 +8,7 @@ describe('InicioSesionComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [InicioSesionComponent]
+      declarations: [InicioSesionComponent],
     });
     fixture = TestBed.createComponent(InicioSesionComponent);
     component = fixture.componentInstance;

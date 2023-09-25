@@ -4,7 +4,7 @@ import { TipoMantenimiento } from "../models";
 
 const BuscarTiposMantenimiento = async (req: Request, res: Response) => {
   try {
-    const { Limite = 10, Desde = 0 } = req.query;
+    const { Limite = 100, Desde = 0 } = req.query;
     const query = { ESTADO: true };
 
     const [total, datos]: [number, TiposMantenimientos[]] = await Promise.all([
@@ -43,22 +43,37 @@ const BuscarTipoMantenimientoPorID = async (req: Request, res: Response) => {
 
 const CrearTipoMantenimiento = async (req: Request, res: Response) => {
   try {
+    // Obtener los datos del tipo de mantenimiento del cuerpo de la solicitud
     const nuevoTipoMantenimiento: TiposMantenimientos = req.body;
-    const tipoMantenimientoExistente: TiposMantenimientos | null = await TipoMantenimiento.findOne({
-      TIPOSMANTE_ID: nuevoTipoMantenimiento.TIPOSMANTE_ID,
-    });
 
-    if (tipoMantenimientoExistente) {
-      return res.status(400).json({ error: "El tipo de mantenimiento ya existe" });
-    }
+    // Función para encontrar un TIPOSMANTE_ID no utilizado
+    const encontrarTIPOSMANTE_IDNoUtilizado = async () => {
+      let nuevoTIPOSMANTE_ID = nuevoTipoMantenimiento.TIPOSMANTE_ID;
+      let tipoMantenimientoExistente: TiposMantenimientos | null;
 
-    const tipoMantenimientoCreado: TiposMantenimientos = await TipoMantenimiento.create(nuevoTipoMantenimiento);
+      do {
+        tipoMantenimientoExistente = await TipoMantenimiento.findOne({
+          TIPOSMANTE_ID: nuevoTIPOSMANTE_ID,
+        });
+        if (tipoMantenimientoExistente) {
+          nuevoTIPOSMANTE_ID++;
+        }
+      } while (tipoMantenimientoExistente);
+
+      return nuevoTIPOSMANTE_ID;
+    };
+    nuevoTipoMantenimiento.TIPOSMANTE_ID = await encontrarTIPOSMANTE_IDNoUtilizado();
+    const tipoMantenimientoCreado: TiposMantenimientos = await TipoMantenimiento.create(
+      nuevoTipoMantenimiento
+    );
+
     res.status(201).json(tipoMantenimientoCreado);
   } catch (error) {
     console.error("Error al crear un tipo de mantenimiento:", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
 
 const ActualizarTipoMantenimiento = async (req: Request, res: Response) => {
   try {

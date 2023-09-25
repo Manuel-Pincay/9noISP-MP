@@ -4,7 +4,7 @@ import { Ruta } from "../models";
 
 const BuscarRutas = async (req: Request, res: Response) => {
   try {
-    const { Limite = 10, Desde = 0 } = req.query;
+    const { Limite = 100, Desde = 0 } = req.query;
     const query = { ESTADO: true };
 
     const [total, datos]: [number, Rutas[]] = await Promise.all([
@@ -40,17 +40,28 @@ const BuscarRutaPorID = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
-
 const CrearRuta = async (req: Request, res: Response) => {
   try {
     const nuevaRuta: Rutas = req.body;
-    const rutaExistente: Rutas | null = await Ruta.findOne({
-      RUTAS_ID: nuevaRuta.RUTAS_ID,
-    });
 
-    if (rutaExistente) {
-      return res.status(400).json({ error: "La ruta ya existe" });
-    }
+    const encontrarRUTAS_IDNoUtilizado = async () => {
+      let nuevoRUTAS_ID = nuevaRuta.RUTAS_ID;
+      let rutaExistente: Rutas | null;
+
+      do {
+        rutaExistente = await Ruta.findOne({
+          RUTAS_ID: nuevoRUTAS_ID,
+        });
+
+        if (rutaExistente) {
+          nuevoRUTAS_ID++;
+        }
+      } while (rutaExistente);
+
+      return nuevoRUTAS_ID;
+    };
+
+    nuevaRuta.RUTAS_ID = await encontrarRUTAS_IDNoUtilizado();
 
     const rutaCreada: Rutas = await Ruta.create(nuevaRuta);
     res.status(201).json(rutaCreada);
@@ -59,6 +70,7 @@ const CrearRuta = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+
 
 const ActualizarRuta = async (req: Request, res: Response) => {
   try {
