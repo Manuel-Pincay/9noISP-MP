@@ -17,8 +17,6 @@
 
 # Evidencias APP
 # Complementario 1 
-
-![image](https://github.com/JesusDRC/PROY-INTEGRACION/assets/103917223/30726a37-252e-4221-b0b2-04abe25ee323)
 ![image](https://github.com/JesusDRC/PROY-INTEGRACION/assets/103917223/693830de-df7e-43af-bbd3-eb1ba825b5c5)
 
 ![image](https://github.com/JesusDRC/PROY-INTEGRACION/assets/103917223/b5d576a8-0f5f-4d83-89b9-3ed41647ef68)
