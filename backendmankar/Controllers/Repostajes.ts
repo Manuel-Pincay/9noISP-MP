@@ -61,11 +61,10 @@ const CrearRepostaje = async (req: Request, res: Response) => {
 // Controlador para obtener todos los repostajes
 const BuscarRepostajes = async (req: Request, res: Response) => {
   try {
-    const { Limite = 100, Desde = 0 } = req.query;
     const query = { ESTADO: true };
     const [total, datos]: [number, Repostajes[]] = await Promise.all([
       Repostaje.countDocuments(query),
-      Repostaje.find(query).skip(Number(Desde)).limit(Number(Limite)),
+      Repostaje.find(query),
     ]);
     res.json({
       total,

@@ -5,17 +5,17 @@ import { Usuario } from "../models";
 
 const BuscarUsuarios = async (req: Request, res: Response) => {
   try {
-    const { Limite = 100, Desde = 0 } = req.query;
+    
     const query = { ESTADO: true };
 
     // Usar Promise.all para realizar ambas consultas de manera concurrente
     const [total, datos]: [number, Usuarios[]] = await Promise.all([
       Usuario.countDocuments(query),
-      Usuario.find(query).skip(Number(Desde)).limit(Number(Limite)),
+      Usuario.find(query),
     ]);
-
+    
     // Devolver una respuesta JSON con los datos encontrados
-    res.json({
+    res.status(200).json({
       total,
       datos,
     });
@@ -67,6 +67,17 @@ const CrearUsuario = async (req: Request, res: Response) => {
       console.log("Usuario existente:", usuarioExistente);
       return res.status(400).json({ error: "El usuario ya existe" });
     }
+
+    const emailExistente: Usuarios | null = await Usuario.findOne({
+      USUARIO_EMAIL: nuevoUsuario.USUARIO_EMAIL,
+    });
+
+    if (emailExistente) {
+      // Si el usuario ya existe, devuelve un mensaje de error
+      console.log("Email existente:", emailExistente);
+      return res.status(400).json({ error: "El email ya existe" });
+    }
+
 
     // Crear un nuevo usuario en la base de datos
     const usuarioCreado: Usuarios = await Usuario.create(nuevoUsuario);

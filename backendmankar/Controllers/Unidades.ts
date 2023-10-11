@@ -5,13 +5,12 @@ import { Unidad } from "../models";
 // Controlador para buscar unidades
 const BuscarUnidades = async (req: Request, res: Response) => {
   try {
-    const { Limite = 100, Desde = 0 } = req.query;
     const query = { ESTADO: true };
 
     // Usar Promise.all para realizar ambas consultas de manera concurrente
     const [total, datos]: [number, Unidades[]] = await Promise.all([
       Unidad.countDocuments(query),
-      Unidad.find(query).skip(Number(Desde)).limit(Number(Limite)),
+      Unidad.find(query),
     ]);
 
     // Devolver una respuesta JSON con los datos encontrados

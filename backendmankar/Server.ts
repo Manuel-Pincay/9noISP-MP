@@ -1,6 +1,6 @@
 import express, { Router, Express } from "express";
 import cors from 'cors'
-
+import http from 'http';
 import { dbConection } from "./Database/Config";
 
 // Importa las rutas de tus entidades
@@ -18,8 +18,8 @@ class Server {
     router: Router;
     port: number;
     paths: { [key: string]: string };
-    private _express: Express;
-
+     _express: Express;
+    private httpServer: http.Server;
     constructor() {
         this.app = Router();
         this.router = Router();
@@ -40,6 +40,8 @@ class Server {
         this.routes();
         this.router.use('/noveno', this.app);
         this._express = express().use(this.router);
+
+        this.httpServer = http.createServer(this._express);
     }
 
     private middlewares(){
@@ -66,6 +68,10 @@ class Server {
         this._express.listen(this.port, () => {
             console.log(`Servidor corriendo en puerto http://localhost:${this.port}/noveno`);
         });
+    }
+
+    stop() {
+        this.httpServer.close(); // Detén el servidor HTTP
     }
 }
 

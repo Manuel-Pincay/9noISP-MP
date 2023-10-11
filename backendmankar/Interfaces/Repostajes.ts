@@ -8,3 +8,4 @@ export interface Repostajes {
   UNIDADES_PLACA: string;
   RUTAS_ID: number;
 }
+  

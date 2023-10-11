@@ -1,7 +1,6 @@
 import { Mantenimientos } from "../Interfaces";
 import { Request, Response } from "express";
 import { Mantenimiento } from "../models";
-import mongoose, { ClientSession } from 'mongoose'; 
 // Controlador para crear un nuevo mantenimientoconst CrearMantenimiento = async (req: Request, res: Response) => {
   const CrearMantenimiento = async (req: Request, res: Response) => {
     try {
@@ -12,7 +11,6 @@ import mongoose, { ClientSession } from 'mongoose';
       const encontrarMANTENIMIENTO_IDNoUtilizado = async () => {
         let nuevoMANTENIMIENTO_ID = nuevoMantenimiento.MANTENIMIENTO_ID;
         let mantenimientoExistente: Mantenimientos | null;
-  
         do {
           mantenimientoExistente = await Mantenimiento.findOne({
             MANTENIMIENTO_ID: nuevoMANTENIMIENTO_ID,
@@ -48,15 +46,12 @@ import mongoose, { ClientSession } from 'mongoose';
 // Controlador para obtener todos los mantenimientos
 const BuscarMantenimientos = async (req: Request, res: Response) => {
   try {
-    const { Limite = 100, Desde = 0 } = req.query;
     const query = { ESTADO: true };
 
     // Usar Promise.all para realizar ambas consultas de manera concurrente
     const [total, datos]: [number, Mantenimientos[]] = await Promise.all([
       Mantenimiento.countDocuments(query),
-      Mantenimiento.find(query)
-        .skip(Number(Desde))
-        .limit(Number(Limite)).sort({ MANTENIMIENTO_ID: 1 }),
+      Mantenimiento.find(query),
     ]);
 
     res.json({
