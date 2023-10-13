@@ -55,8 +55,51 @@ const CrearRepostaje = async (req: Request, res: Response) => {
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
+/* 
+const CrearRepostaje = async (req: Request, res: Response) => {
+  try {
+    const nuevoRepostaje: Repostajes = req.body;
+    
+    // Verifica si el REPOSTAJE_ID ya existe
+    const repostajeExistente = await Repostaje.findOne({
+      REPOSTAJE_ID: nuevoRepostaje.REPOSTAJE_ID,
+    });
 
+    if (repostajeExistente) {
+      return res.status(400).json({ error: "Ya existe un repostaje con este ID" });
+    }
 
+    // Función para encontrar un REPOSTAJE_ID no utilizado
+    const encontrarREPOSTAJE_IDNoUtilizado = async () => {
+      let nuevoREPOSTAJE_ID = nuevoRepostaje.REPOSTAJE_ID;
+      
+      while (true) {
+        const repostajeExistente = await Repostaje.findOne({
+          REPOSTAJE_ID: nuevoREPOSTAJE_ID,
+        });
+        
+        if (!repostajeExistente) {
+          break; // El REPOSTAJE_ID es único, puedes salir del bucle
+        }
+        
+        nuevoREPOSTAJE_ID++;
+      }
+      
+      return nuevoREPOSTAJE_ID;
+    };
+
+    // Encontrar un REPOSTAJE_ID no utilizado
+    nuevoRepostaje.REPOSTAJE_ID = await encontrarREPOSTAJE_IDNoUtilizado();
+
+    // Crear el nuevo repostaje
+    const repostajeCreado: Repostajes = await Repostaje.create(nuevoRepostaje);
+    res.status(201).json(repostajeCreado);
+  } catch (error) {
+    console.error("Error al crear un repostaje:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+};
+ */
 
 // Controlador para obtener todos los repostajes
 const BuscarRepostajes = async (req: Request, res: Response) => {
@@ -66,7 +109,7 @@ const BuscarRepostajes = async (req: Request, res: Response) => {
       Repostaje.countDocuments(query),
       Repostaje.find(query),
     ]);
-    res.json({
+    res.status(201).json({
       total,
       datos,
     });
