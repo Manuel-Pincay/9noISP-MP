@@ -2,18 +2,16 @@ import server from "../Index";
 import request from "supertest";
 
 describe("Server", () => {
-/*   //////////////////////////////////////USUARIOS///////////////////////////////////////////////////////////
+  //////////////////////////////////////USUARIOS///////////////////////////////////////////////////////////
   it("Debería obtener una respuesta exitosa al hacer una solicitud GET a /api/usuarios", async () => {
     const response = await request(server._express).get("/noveno/api/usuarios");
-
-    expect(response.status).toBe(200); // Verifica que el estado de la respuesta sea 200 OK
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(200); 
   });
 
   it("Debería crear un nuevo usuario al hacer una solicitud POST a /api/usuarios", async () => {
     const newUser = {
-      USUARIO_DNI: 1313426774,
-      USUARIO_EMAIL: "manuelpincay1111@gmail.com",
+      USUARIO_DNI: 1355457925,
+      USUARIO_EMAIL: "manuelpincay24576@gmail.com",
       USUARIO_PASSWORD: "admin2023",
       USUARIO_NOMBRE: "Manuel Pincay",
       UNIDADES_PLACA: "MBG6410",
@@ -23,23 +21,19 @@ describe("Server", () => {
     const response = await request(server._express)
       .post("/noveno/api/usuarios")
       .send(newUser);
-
-    expect(response.status).toBe(201); // Verifica que el estado de la respuesta sea 201 Created (u otro código adecuado)
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(201); 
   });
 
   //////////////////////////////////UNIDADES///////////////////////////////////////////////////////////////
   it("Debería obtener una respuesta exitosa al hacer una solicitud GET a /api/unidades", async () => {
     const response = await request(server._express).get("/noveno/api/unidades");
-
-    expect(response.status).toBe(200); // Verifica que el estado de la respuesta sea 200 OK
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(200); 
   });
 
   it("Debería crear un nuevo usuario al hacer una solicitud POST a /api/unidades", async () => {
     const newUnidad = {
-      UNIDADES_PLACA:"MAA572",
-      UNIDADES_NUMERO:123,
+      UNIDADES_PLACA:"MAA6457",
+      UNIDADES_NUMERO:844,
       UNIDADES_COLOR:"Negro",
       UNIDADES_MATRICULA:"2124515133",
       UNIDADES_ANO:2022,
@@ -51,26 +45,21 @@ describe("Server", () => {
     const response = await request(server._express)
       .post("/noveno/api/unidades")
       .send(newUnidad);
-
-    expect(response.status).toBe(201); // Verifica que el estado de la respuesta sea 201 Created (u otro código adecuado)
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(201);
   }); 
-  
-  LISTOS
-  */
+ 
 
 
   ////////////////////////////////////////MANTENIMIENTOS/////////////////////////////////////////////////////////
   it("Debería obtener una respuesta exitosa al hacer una solicitud GET a /api/mantenimientos", async () => {
     const response = await request(server._express).get("/noveno/api/mantenimientos");
 
-    expect(response.status).toBe(200); // Verifica que el estado de la respuesta sea 200 OK
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(200); 
   });
 
-  it("Debería crear un nuevo usuario al hacer una solicitud POST a /api/mantenimientos", async () => {
+  it("Debería crear un nuevo mantenimiento al hacer una solicitud POST a /api/mantenimientos", async () => {
     const newMantenimiento = {
-      MANTENIMIENTO_ID:689,
+      MANTENIMIENTO_ID:654,
       MANTENIMIENTO_KMAC:150000,
       MANTENIMIENTO_KMPROX:200000,
       MANTENIMIENTO_COMENTARIO:"Todo en orden hasta el último reporte",
@@ -85,9 +74,7 @@ describe("Server", () => {
     const response = await request(server._express)
       .post("/noveno/api/mantenimientos")
       .send(newMantenimiento);
-
-    expect(response.status).toBe(201); // Verifica que el estado de la respuesta sea 201 Created (u otro código adecuado)
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(201); 
   });
 
 
@@ -95,26 +82,26 @@ describe("Server", () => {
   it("Debería obtener una respuesta exitosa al hacer una solicitud GET a /api/repostajes", async () => {
     const response = await request(server._express).get("/noveno/api/repostajes");
 
-    expect(response.status).toBe(200); // Verifica que el estado de la respuesta sea 200 OK
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(201); 
   });
 
-  it("Debería crear un nuevo usuario al hacer una solicitud POST a /api/repostajes", async () => {
-    const newUser = {
-      RESPOTAJE_ID:775,
-      RESPOTAJE_KMCA:150000,
-      RESPOTAJE_COMENTARIO:"Repostaje hecho volviendo del viaje",
-      ESTADO:true,
-      UNIDADES_PLACA:"MAAA123",
-      RUTAS_ID:2
+  it("Debería crear un nuevo repostaje al hacer una solicitud POST a /api/repostajes", async () => {
+    const newRepostaje = {
+      REPOSTAJE_ID: 775,
+      REPOSTAJE_KMAC: 1500,
+      REPOSTAJE_COMENTARIO: "Repostaje hecho volviendo del viaje",
+      ESTADO: true,
+      UNIDADES_PLACA: "MAAA123",
+      RUTAS_ID: 2
     };
+
 
     const response = await request(server._express)
       .post("/noveno/api/repostajes")
-      .send(newUser);
+      .send(newRepostaje);
 
-    expect(response.status).toBe(201); // Verifica que el estado de la respuesta sea 201 Created (u otro código adecuado)
-    // También puedes realizar más comprobaciones en la respuesta si es necesario
+    expect(response.status).toBe(201); 
   });
 
+  
 });
