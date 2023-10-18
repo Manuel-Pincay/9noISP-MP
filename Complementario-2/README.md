@@ -36,3 +36,7 @@ Utilizar por lo menos 5 funcionalidades de las herramientas, frameworks o CLI ap
 ![Alt text](./evidecias/ss7.png)
 
 Cargar aplicación funcionando y permitir realizar cambios desde el host que se repliquen en su ambiente de desarrollo.
+![Alt text](./evidecias/ss8.jpeg)
+![Alt text](./evidecias/ss9.png)
+![Alt text](./evidecias/ss10.png)
+![Alt text](./evidecias/ss11.png)
