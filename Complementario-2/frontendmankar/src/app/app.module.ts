@@ -28,7 +28,6 @@ import { UnidadesComponent } from './Modulos/unidades/unidades.component';
 import { VerunidadesComponent } from './Modulos/verunidades/verunidades.component';
 import { MantenimientosComponent } from './Modulos/mantenimientos/mantenimientos.component';
 
-
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: 'inicio', component: WelcomeComponent, pathMatch: 'full' },
@@ -73,7 +72,7 @@ const routes: Routes = [
     VerUsuariosComponent,
     UnidadesComponent,
     VerunidadesComponent,
-    MantenimientosComponent
+    MantenimientosComponent,
   ],
   imports: [
     BrowserModule,
