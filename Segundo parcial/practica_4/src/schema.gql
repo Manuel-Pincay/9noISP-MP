@@ -1,0 +1,53 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Transaccion {
+  monto: Int!
+  cliente: ID!
+}
+
+type Client {
+  name_client: String!
+  direction: String!
+  phone: Int!
+  id_city: String!
+  id_client_type: String!
+  ci_client: String!
+  estado: Boolean!
+  transacciones: [Transaccion!]
+  createCliente(id: ID!): Client!
+}
+
+type Query {
+  clientes: [Client!]!
+  cliente(id: ID!): Client!
+}
+
+type Mutation {
+  createCliente(createClienteInput: CreateClienteInput!): Client!
+  updateCliente(id: ID!, updateClienteInput: UpdateClienteInput!): Client!
+  removeCliente(id: ID!): Client!
+  createTransaccion(clienteId: ID!, monto: Int!): Transaccion!
+}
+
+input CreateClienteInput {
+  name_client: String!
+  direction: String!
+  phone: Int!
+  id_city: String!
+  id_client_type: String!
+  ci_client: String!
+  estado: Boolean!
+}
+
+input UpdateClienteInput {
+  name_client: String
+  direction: String
+  phone: Int
+  id_city: String
+  id_client_type: String
+  ci_client: String
+  estado: Boolean
+  id: ID
+}
